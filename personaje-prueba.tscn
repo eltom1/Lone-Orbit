@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c0pdkxgphve8w"]
+
+[ext_resource type="Script" uid="uid://jyc0sv0ifp4b" path="res://personaje_prueba.gd" id="1_l36xu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uu4w7"]
+radius = 12.0
+height = 44.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l36xu"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1711250196]
+script = ExtResource("1_l36xu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195911018]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_uu4w7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=1111551928]
+position = Vector2(1.3906248, 0)
+scale = Vector2(21.21875, 20.875)
+mesh = SubResource("CapsuleMesh_l36xu")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2079359050]

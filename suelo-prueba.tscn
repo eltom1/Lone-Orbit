@@ -9,6 +9,9 @@ size = Vector2(298, 67)
 
 [node name="Node2D" type="Node2D" unique_id=1706187378]
 
+[node name="CharacterBody2D" parent="." unique_id=1711250196 instance=ExtResource("1_p4gk3")]
+position = Vector2(37, -30)
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=458815727]
 position = Vector2(3, 10)
 
@@ -21,5 +24,15 @@ position = Vector2(34.5, 23.5)
 scale = Vector2(299, 67)
 mesh = SubResource("BoxMesh_p4gk3")
 
-[node name="CharacterBody2D" parent="StaticBody2D" unique_id=1711250196 instance=ExtResource("1_p4gk3")]
-position = Vector2(34, -40)
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D" unique_id=1700474375]
+position = Vector2(-283, -58)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/StaticBody2D" unique_id=2076333134]
+position = Vector2(34, 23.5)
+shape = SubResource("RectangleShape2D_ims2e")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D/StaticBody2D" unique_id=169962095]
+position = Vector2(34.5, 23.5)
+scale = Vector2(299, 67)
+mesh = SubResource("BoxMesh_p4gk3")

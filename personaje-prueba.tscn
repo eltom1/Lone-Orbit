@@ -21,3 +21,5 @@ scale = Vector2(21.21875, 20.875)
 mesh = SubResource("CapsuleMesh_l36xu")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2079359050]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=138128182]

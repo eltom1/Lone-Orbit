@@ -26,11 +26,11 @@ You manage a deteriorating ship, perform maintenance, go on spacewalks, and make
 
 ## 📌 Basic roadmap (start: 7/5/26 - end...)
 - [x] Basic Movement (w,a,s,d)
-- [] Basic idle sprites (left, right)
+- [ ] Basic idle sprites (left, right)
 - [ ] Ship
 - [ ] Running sprites
-- [] UI (User Interface)
-- [] Sounds
+- [ ] UI (User Interface)
+- [ ] Sounds
 - [ ] MENU
 - [ ] OPTIONS
 - [ ] GRAPHICS

@@ -1,4 +1,4 @@
-# Lone-Orbit (orbita solitaria) (nombre temporar)
+# Lone-Orbit (orbita solitaria) (nombre temporal)
 
 Lone Orbit is a science fiction survival game that explores loneliness, sacrifice, and the need to keep a dying spaceship alive while on a mission to save Earth from a drifting black hole. Unlike most space survival games, it focuses on emotional resilience rather than action, exploring decades of isolation, routine, and the weight of a mission whose outcome may never be known.
 genre: Narrative Survival , Sci-Fi , Single Player

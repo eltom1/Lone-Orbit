@@ -28,8 +28,7 @@ func _physics_process(delta):
 
 		if not is_on_floor():
 			velocity.y += GRAVEDAD * delta
-		
-		
+				
 		if Input.is_action_just_pressed("SPACE") and is_on_floor():
 			velocity.y = FUERZA_SALTO
 

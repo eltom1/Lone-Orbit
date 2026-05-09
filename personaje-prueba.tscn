@@ -43,6 +43,8 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ve1mq"]
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1711250196]
 script = ExtResource("1_l36xu")
 
@@ -55,7 +57,13 @@ shape = SubResource("CapsuleShape2D_uu4w7")
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=138128182]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=317983351]
+visible = false
 position = Vector2(3, -2)
 sprite_frames = SubResource("SpriteFrames_fumd2")
 animation = &"Idle"
 frame_progress = 0.13615784
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=379392615]
+position = Vector2(1, 1.1920929e-07)
+scale = Vector2(20.750002, 20.750002)
+mesh = SubResource("CapsuleMesh_ve1mq")

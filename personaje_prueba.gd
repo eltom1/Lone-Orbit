@@ -1,35 +1,29 @@
+#hereda de godot las fisicas , colisiones, etc
 extends CharacterBody2D
 
-const VELOCIDAD = 200.0
-const GRAVEDAD = 900.0
-const FUERZA_SALTO = -400.0
+#constantess, no cambian a lo largo de la ejecucion del programa
+const VELOCIDAD = 200.0 #velocidad de movimiento del jugador
+const GRAVEDAD = 900.0  #que tan rapido cae el personaje 
+const FUERZA_SALTO = -400.0 # negativo pq en gdscritpt la y esta arriba 
 
-var en_escalera = false
+# ===============================================================
 
+func _physics_process(delta):#  función interna que se ejecuta automáticamente en 
+							 #  cada frame de física (por defecto 60 veces por segundo
 
-func _physics_process(delta):
-	
-	if Input.is_action_pressed("RIGHT"):
+	if Input.is_action_pressed("RIGHT"): #movimiento hacia la derecha en el eje x
 		velocity.x = VELOCIDAD
-	elif Input.is_action_pressed("LEFT"):
+		
+	elif Input.is_action_pressed("LEFT"):  #movimiento hacia la izquierda en el eje x
 		velocity.x = -VELOCIDAD
+		
 	else:
 		velocity.x = 0
 
-	if en_escalera:
-		velocity.y = 0
-		
-		if Input.is_action_pressed("ui_up"):
-			velocity.y = -VELOCIDAD
-		elif Input.is_action_pressed("ui_down"):
-			velocity.y = VELOCIDAD
-	
-	else:
+	if not is_on_floor():  # pregunta si el pj no ta tocando el suelo entonces 
+		velocity.y += GRAVEDAD * delta
+			
+	if Input.is_action_just_pressed("SPACE") and is_on_floor(): #  # Funcion para que cuando el pj salta la gravedad lo tire para abjo
+		velocity.y = FUERZA_SALTO
 
-		if not is_on_floor():
-			velocity.y += GRAVEDAD * delta
-				
-		if Input.is_action_just_pressed("SPACE") and is_on_floor():
-			velocity.y = FUERZA_SALTO
-
-	move_and_slide()
+	move_and_slide()  #Aplica velocity, detecta colisiones, no atraviesa paredes ni suelo

@@ -36,4 +36,3 @@ You manage a deteriorating ship, perform maintenance, go on spacewalks, and make
 - [ ] GRAPHICS
 - [ ] Gravity indoors
 - [ ] No gravity outdoors
-

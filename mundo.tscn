@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ctt6m22v5dxiy"]
+
+[ext_resource type="PackedScene" uid="uid://g24624f8v5uv" path="res://UAL1_Standard.glb" id="1_6ba58"]
+[ext_resource type="Script" uid="uid://0iltyow0xnnh" path="res://jugador.gd" id="1_lgngo"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lgngo"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_fw4w5"]
+sky_material = SubResource("ProceduralSkyMaterial_lgngo")
+
+[sub_resource type="Environment" id="Environment_otwa2"]
+background_mode = 2
+sky = SubResource("Sky_fw4w5")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fw4w5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lgngo"]
+size = Vector3(40, 0.1, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fw4w5"]
+albedo_color = Color(0.21302305, 0.2843897, 0.15317188, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_otwa2"]
+material = SubResource("StandardMaterial3D_fw4w5")
+size = Vector3(40, 0.1, 40)
+
+[node name="Node3D" type="Node3D" unique_id=926419767]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=638239455]
+environment = SubResource("Environment_otwa2")
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=169327904]
+script = ExtResource("1_lgngo")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2052146526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5618875, 0)
+shape = SubResource("CapsuleShape3D_fw4w5")
+
+[node name="UAL1_Standard" parent="CharacterBody3D" unique_id=210078106 instance=ExtResource("1_6ba58")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706166, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2015797250]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=86818897]
+shape = SubResource("BoxShape3D_lgngo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=885047548]
+mesh = SubResource("BoxMesh_otwa2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=687268720]
+
+[node name="CAMARA 2D" type="Camera3D" parent="." unique_id=379018118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
+projection = 1
+size = 8.0

@@ -1,13 +1,15 @@
 [gd_scene format=3 uid="uid://ctt6m22v5dxiy"]
 
-[ext_resource type="PackedScene" uid="uid://g24624f8v5uv" path="res://UAL1_Standard.glb" id="1_6ba58"]
+[ext_resource type="PackedScene" uid="uid://g24624f8v5uv" path="res://UAL1_standard.glb" id="1_6ba58"]
 [ext_resource type="Script" uid="uid://0iltyow0xnnh" path="res://jugador.gd" id="1_lgngo"]
+[ext_resource type="Script" uid="uid://cpdjk8anjlpbh" path="res://hud.gd" id="3_fw4w5"]
 
-[sub_resource type="Sky" id="Sky_lgngo"]
+[sub_resource type="Sky" id="Sky_fw4w5"]
 
 [sub_resource type="Environment" id="Environment_fw4w5"]
-sky = SubResource("Sky_lgngo")
-sky_custom_fov = 44.0
+background_mode = 2
+sky = SubResource("Sky_fw4w5")
+sky_custom_fov = 10.6
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fw4w5"]
 
@@ -31,29 +33,84 @@ sky_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=638239455]
 environment = SubResource("Environment_fw4w5")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=169327904]
+[node name="Pj" type="CharacterBody3D" parent="." unique_id=169327904]
 script = ExtResource("1_lgngo")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=2052146526]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Pj" unique_id=2052146526]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6958127, 0)
 shape = SubResource("CapsuleShape3D_fw4w5")
 
-[node name="UAL1_Standard" parent="CharacterBody3D" unique_id=210078106 instance=ExtResource("1_6ba58")]
+[node name="UAL1_Standard" parent="Pj" unique_id=232345300 instance=ExtResource("1_6ba58")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.706166, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=2015797250]
+[node name="Piso" type="StaticBody3D" parent="." unique_id=2015797250]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12855816, -1.4912779, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=86818897]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso" unique_id=86818897]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.14720154, -0.53234863, 0)
 shape = SubResource("BoxShape3D_lgngo")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=885047548]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso" unique_id=885047548]
 transform = Transform3D(0.7410265, 0, 0, 0, 19.369946, 0, 0, 0, 1, 0, -0.5250101, -14.449028)
 mesh = SubResource("BoxMesh_otwa2")
 
-[node name="CAMARA 2D" type="Camera3D" parent="." unique_id=379018118]
+[node name="Camara2d" type="Camera3D" parent="." unique_id=379018118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 10)
 projection = 1
 size = 10.0
+
+[node name="Hud" type="Control" parent="." unique_id=536797767 groups=["hud"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_fw4w5")
+
+[node name="SinVida" type="ColorRect" parent="Hud" unique_id=1301237183]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 216.0
+offset_bottom = 34.0
+color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[node name="BarraVida" type="ColorRect" parent="Hud" unique_id=33267321]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 216.0
+offset_bottom = 34.0
+color = Color(0.26666668, 1, 0.4, 1)
+
+[node name="SinEstamina" type="ColorRect" parent="Hud" unique_id=944184848]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 42.0
+offset_right = 216.0
+offset_bottom = 60.0
+color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[node name="BarraEstamina" type="ColorRect" parent="Hud" unique_id=802382794]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 42.0
+offset_right = 216.0
+offset_bottom = 60.0
+color = Color(1, 0.9098039, 0.26666668, 1)
+
+[node name="SinOxigeno" type="ColorRect" parent="Hud" unique_id=1627417134]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 68.0
+offset_right = 216.0
+offset_bottom = 86.0
+color = Color(0.103743516, 0.10374353, 0.103743516, 1)
+
+[node name="BarraOxigeno" type="ColorRect" parent="Hud" unique_id=526970789]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 68.0
+offset_right = 216.0
+offset_bottom = 86.0
+color = Color(5.583167e-06, 0.69118947, 0.9461009, 1)

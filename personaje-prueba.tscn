@@ -1,56 +1,22 @@
 [gd_scene format=3 uid="uid://c0pdkxgphve8w"]
 
 [ext_resource type="Script" uid="uid://jyc0sv0ifp4b" path="res://personaje_prueba.gd" id="1_l36xu"]
-[ext_resource type="Texture2D" uid="uid://4a5vwttmstux" path="res://untitled.png" id="2_ve1mq"]
-[ext_resource type="PackedScene" uid="uid://g24624f8v5uv" path="res://UAL1_Standard.glb" id="3_v6gee"]
+[ext_resource type="PackedScene" uid="uid://cbvv1rigoo37i" path="res://3d_personaje.tscn" id="2_ve1mq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uu4w7"]
-radius = 12.0
-height = 44.0
+radius = 29.0
+height = 248.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v6gee"]
-atlas = ExtResource("2_ve1mq")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="ViewportTexture" id="ViewportTexture_v6gee"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hy73o"]
-atlas = ExtResource("2_ve1mq")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_03rno"]
-atlas = ExtResource("2_ve1mq")
-region = Rect2(128, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_18mh2"]
-atlas = ExtResource("2_ve1mq")
-region = Rect2(192, 0, 64, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_fumd2"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v6gee")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hy73o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_03rno")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_18mh2")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 10.0
-}]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ve1mq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ve1mq"]
+viewport_path = NodePath("SubViewport")
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=1711250196]
 script = ExtResource("1_l36xu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195911018]
-position = Vector2(1, 0)
+position = Vector2(-3, -95)
 shape = SubResource("CapsuleShape2D_uu4w7")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2079359050]
@@ -58,16 +24,16 @@ position_smoothing_enabled = true
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=138128182]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=317983351]
-visible = false
-position = Vector2(3, -2)
-sprite_frames = SubResource("SpriteFrames_fumd2")
-animation = &"Idle"
-frame_progress = 0.13615784
-
 [node name="MeshInstance2D" type="MeshInstance2D" parent="." unique_id=379392615]
 position = Vector2(1, 1.1920929e-07)
 scale = Vector2(20.750002, 20.750002)
-mesh = SubResource("CapsuleMesh_ve1mq")
+texture = SubResource("ViewportTexture_v6gee")
 
-[node name="UAL1_Standard" parent="." unique_id=1758460611 instance=ExtResource("3_v6gee")]
+[node name="SubViewport" parent="." unique_id=1633651720 instance=ExtResource("2_ve1mq")]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=547148816]
+offset_left = -254.0
+offset_top = -440.0
+offset_right = 258.0
+offset_bottom = 72.0
+texture = SubResource("ViewportTexture_ve1mq")

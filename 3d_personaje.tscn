@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://cbvv1rigoo37i"]
 
 [ext_resource type="PackedScene" uid="uid://g24624f8v5uv" path="res://UAL1_Standard.glb" id="1_chbgw"]
+[ext_resource type="Script" uid="uid://cxl8uuqvblgxb" path="res://modelo_pj.gd" id="1_lrtad"]
 
 [node name="SubViewport" type="SubViewport" unique_id=1633651720]
 transparent_bg = true
 
 [node name="Node3D" type="Node3D" parent="." unique_id=146322656]
+script = ExtResource("1_lrtad")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D" unique_id=473666486]
 

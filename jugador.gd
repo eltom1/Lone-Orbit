@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
-const VELOCIDAD = 3.0
-const VELOCIDAD_CORRIENDO = 9.0
+const VELOCIDAD = 2.0
+const VELOCIDAD_CORRIENDO = 6.0
+const VELOCIDAD_AGACHADO = 1.0
 const GRAVEDAD = -20.0
 const FUERZA_SALTO = 8.0
 
@@ -16,10 +17,10 @@ func _physics_process(delta):
 	var vel_objetivo = VELOCIDAD_CORRIENDO if corriendo else VELOCIDAD
 
 	if Input.is_action_pressed("RIGHT"):
-		velocity.x = vel_objetivo
+		velocity.x = VELOCIDAD_AGACHADO if agachado else vel_objetivo
 		$UAL1_Standard.rotation.y = PI / 2
 	elif Input.is_action_pressed("LEFT"):
-		velocity.x = -vel_objetivo
+		velocity.x = -(VELOCIDAD_AGACHADO if agachado else vel_objetivo)
 		$UAL1_Standard.rotation.y = -PI / 2
 	else:
 		velocity.x = move_toward(velocity.x, 0, vel_objetivo)

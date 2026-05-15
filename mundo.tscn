@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://g24624f8v5uv" path="res://UAL1_standard.glb" id="1_6ba58"]
 [ext_resource type="Script" uid="uid://0iltyow0xnnh" path="res://jugador.gd" id="1_lgngo"]
 [ext_resource type="Script" uid="uid://cpdjk8anjlpbh" path="res://hud.gd" id="3_fw4w5"]
+[ext_resource type="Texture2D" uid="uid://c3jvamsbixioa" path="res://estrella.png" id="4_otwa2"]
 
 [sub_resource type="Sky" id="Sky_fw4w5"]
 
@@ -24,18 +25,37 @@ material = SubResource("StandardMaterial3D_fw4w5")
 size = Vector3(40, 0.1, 40)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fw4w5"]
-lifetime_randomness = 1.0
 emission_shape_offset = Vector3(20, 10, 0.1)
 emission_shape_scale = Vector3(20, 10, 0.1)
 emission_shape = 3
 emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 0.02
+initial_velocity_max = 0.049999997
+gravity = Vector3(0, 0, 0)
 scale_min = 0.0
 scale_max = 7.2
 scale_over_velocity_min = 843.32
 scale_over_velocity_max = 843.32
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_otwa2"]
+transparency = 1
+albedo_texture = ExtResource("4_otwa2")
+
 [sub_resource type="QuadMesh" id="QuadMesh_otwa2"]
-size = Vector2(0.05, 0.05)
+material = SubResource("StandardMaterial3D_otwa2")
+size = Vector2(0.01, 0.01)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_otwa2"]
+size = Vector3(5, 5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aou4a"]
+transparency = 1
+albedo_color = Color(0.19215687, 0.40392157, 0.9607843, 1)
+backlight_enabled = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_5ckkb"]
+size = Vector2(5, 5)
 
 [node name="Node3D" type="Node3D" unique_id=926419767]
 
@@ -131,6 +151,24 @@ color = Color(5.583167e-06, 0.69118947, 0.9461009, 1)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1643345865]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.435461, 0, -5.510277)
-amount = 200
+amount = 800
+lifetime = 60.0
 process_material = SubResource("ParticleProcessMaterial_fw4w5")
 draw_pass_1 = SubResource("QuadMesh_otwa2")
+
+[node name="z-Grav" type="Area3D" parent="." unique_id=1354641995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4259396, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="z-Grav" unique_id=1695820944]
+shape = SubResource("BoxShape3D_otwa2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="z-Grav" unique_id=1288729610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.390172)
+material_override = SubResource("StandardMaterial3D_aou4a")
+mesh = SubResource("QuadMesh_5ckkb")
+
+[node name="z-SinGrav" type="Area3D" parent="." unique_id=2047884876]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="z-SinGrav" unique_id=1964624557]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="z-SinGrav" unique_id=997881137]

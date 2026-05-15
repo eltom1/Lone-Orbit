@@ -6,13 +6,26 @@ const VELOCIDAD_AGACHADO = 1.0
 const GRAVEDAD = -20.0
 const FUERZA_SALTO = 8.0
 
-@onready var anim = $UAL1_Standard/AnimationPlayer
-
+var anim_tree
+var anim_state
 var en_gravedad = true
+
+func _ready():
+	anim_tree = $"UAL1_standard/AnimationTree"
+	anim_state = anim_tree.get("parameters/playback")
+	$"../z-Grav".body_entered.connect(_entrar_gravedad)
+	$"../z-SinG".body_entered.connect(_entrar_espacio)
+
+func _entrar_gravedad(body):
+	if body == self:
+		en_gravedad = true
+
+func _entrar_espacio(body):
+	if body == self:
+		en_gravedad = false
 
 func _physics_process(delta):
 	var hud = get_tree().get_first_node_in_group("hud")
-	#print("hud: ", hud, " estamina: ", hud.estamina_actual if hud else "NULL")
 	var tiene_estamina = true if hud == null else hud.estamina_actual > 0
 	var corriendo = Input.is_action_pressed("SHIFT") and tiene_estamina
 	var agachado = Input.is_action_pressed("CTRL") and is_on_floor()
@@ -20,10 +33,10 @@ func _physics_process(delta):
 
 	if Input.is_action_pressed("RIGHT"):
 		velocity.x = VELOCIDAD_AGACHADO if agachado else vel_objetivo
-		$UAL1_Standard.rotation.y = PI / 2
+		$"UAL1_standard".rotation.y = PI / 2
 	elif Input.is_action_pressed("LEFT"):
 		velocity.x = -(VELOCIDAD_AGACHADO if agachado else vel_objetivo)
-		$UAL1_Standard.rotation.y = -PI / 2
+		$"UAL1_standard".rotation.y = -PI / 2
 	else:
 		velocity.x = move_toward(velocity.x, 0, vel_objetivo)
 
@@ -42,20 +55,14 @@ func _physics_process(delta):
 
 	if agachado:
 		if mov_x:
-			if anim.current_animation != "Crouch_Fwd":
-				anim.play("Crouch_Fwd")
+			anim_state.travel("Crouch_Fwd")
 		else:
-			if anim.current_animation != "Crouch_Idle":
-				anim.play("Crouch_Idle")
+			anim_state.travel("Crouch_Idle")
 	elif not is_on_floor():
-		if anim.current_animation != "Jump":
-			anim.play("Jump")
+		anim_state.travel("Jump")
 	elif corriendo and mov_x:
-		if anim.current_animation != "Sprint":
-			anim.play("Sprint")
+		anim_state.travel("Sprint")
 	elif mov_x:
-		if anim.current_animation != "Walk":
-			anim.play("Walk")
+		anim_state.travel("Walk")
 	else:
-		if anim.current_animation != "Idle":
-			anim.play("Idle")
+		anim_state.travel("Idle")

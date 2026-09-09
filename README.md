@@ -34,6 +34,8 @@ Technologies
 - [ ] Gravity indoors
 - [ ] No gravity outdoors
 
+<img width="658" height="408" alt="Grabación de pantalla desde 2026-09-09 11-40-15" src="https://github.com/user-attachments/assets/f99e9b5a-6559-4c47-ac2e-dad7448f4d8f" />
+
 <img width="1920" height="1025" alt="{8E96C8B0-DEA5-41D6-B541-153D408A08C1}" src="https://github.com/user-attachments/assets/14835aa4-8581-4fa5-8303-86b57aea2bb1" />
 
 <img width="1920" height="1031" alt="{7079F445-BBBE-46F5-882D-D66235DB08F0}" src="https://github.com/user-attachments/assets/35237a54-76eb-4a43-9aaf-85358fa703de" />
